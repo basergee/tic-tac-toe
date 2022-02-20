@@ -80,6 +80,51 @@ def ask_cell_coord():
     return row, col
 
 
+# Проверяет, что игрок pl является победителем на игровом поле board
+def is_winner(pl, board):
+    # У элементов одной строки совпадает первый индекс
+    # У элементов одного столбца совпадает второй индекс
+    # У элементов главной диагонали совпадают оба индекса
+    # Не известно, как охарактеризовать элементы побочной диагонали
+    # .
+    def check_col(k):
+        x = []
+        for i in range(len(board)):
+            x.append(board[i][k] == pl)
+        return all(x)
+
+    def check_row(k):
+        x = []
+        for i in range(len(board)):
+            x.append(board[k][i] == pl)
+        return all(x)
+
+    def check_main_diag():
+        x = []
+        for i in range(len(board)):
+            for j in range(len(board)):
+                if i == j:
+                    x.append(board[i][j] == pl)
+        return all(x)
+
+    def check_other_diag():
+        x = [
+            board[0][2] == pl,
+            board[1][1] == pl,
+            board[2][0] == pl
+        ]
+        return all(x)
+
+    return any(
+        [
+            any([check_row(i) for i in range(len(board))]),
+            any([check_col(i) for i in range(len(board))]),
+            check_main_diag(),
+            check_other_diag()
+         ]
+    )
+
+
 def game_loop():
     while True:
         # Вывести текущее состояние игрового поля
@@ -100,8 +145,12 @@ def game_loop():
             continue
 
         # Если
-        #     Есть победитель
-        #     Вывести сообщение о победителе и выйти
+        if is_winner(player, game_board):
+            # Есть победитель
+            # Вывести сообщение о победителе и выйти
+            print_board(game_board)
+            print(f"Игрок {player} победил!")
+            break
 
         if not free_cells:
             # Нет свободных клеток
