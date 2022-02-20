@@ -38,6 +38,14 @@ game_board = [
 free_cells = [(i, j) for i in range(3) for j in range(3)]
 
 
+# Перед началом игры приводит все в исходное состояние
+def init_game():
+    global game_board, free_cells, player
+    game_board = [[' '] * 3 for i in range(3)]
+    free_cells = [(i, j) for i in range(3) for j in range(3)]
+    player = playerX
+
+
 def print_board(board):
     # Напечатать первой строкой ось координат
     print("  | 0 | 1 | 2 ")
@@ -115,4 +123,5 @@ while s != 'q':
     s = input("Введите 's', чтобы начать или 'q', чтобы выйти: ")
     if s == 's':
         print_help()
+        init_game()
         game_loop()
