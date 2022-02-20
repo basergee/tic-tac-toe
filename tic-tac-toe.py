@@ -130,10 +130,12 @@ def game_loop():
         # Вывести текущее состояние игрового поля
         print_board(game_board)
 
+        global player
+        print(f"Ход игрока {player}")
+
         # Запросить ввод координат клетки
         cell = ask_cell_coord()
 
-        global player
         # Проверить, что клетка свободна
         if cell in free_cells:
             # Клетка свободна
