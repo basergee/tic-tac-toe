@@ -36,7 +36,6 @@ def print_board(board):
     # Напечатать первой строкой ось координат
     print("  | 0 | 1 | 2 ")
     print("--+---+---+---")
-    # Соеденить каждый ст
     for i in range(len(board)):
         print(str(i) + " | ", end="")
         print(" | ".join(board[i]))
