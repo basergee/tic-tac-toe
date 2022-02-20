@@ -26,9 +26,22 @@ game_board = [
 ]
 
 
+def print_board(board):
+    # Напечатать первой строкой ось координат
+    print("  | 0 | 1 | 2 ")
+    print("--+---+---+---")
+    # Соеденить каждый ст
+    for i in range(len(board)):
+        print(str(i) + " | ", end="")
+        print(" | ".join(board[i]))
+        if i == len(board) - 1:
+            break
+        print("--+---+---+---")
+
+
 def game_loop():
     # Пока
-    while True:
+    # while True:
         # Вывести текущее состояние игрового поля
         # Запросить ввод координат клетки
         # Проверить, что клетка свободна
@@ -47,8 +60,8 @@ def game_loop():
         #     Вывести сообщение о ничьей и выйти
         #
         # Передать ход другому игроку
-        # 
-        print("Играем...")
+        #
+    print_board(game_board)
 
 
 #
