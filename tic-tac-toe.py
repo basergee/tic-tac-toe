@@ -82,7 +82,6 @@ def game_loop():
             free_cells.remove(cell)
         else:
             print("Позиция занята. Выберите другую позицию")
-            continue
 
         # Если
         #     Есть победитель
