@@ -82,47 +82,42 @@ def ask_cell_coord():
 
 # Проверяет, что игрок pl является победителем на игровом поле board
 def is_winner(pl, board):
-    # У элементов одной строки совпадает первый индекс
-    # У элементов одного столбца совпадает второй индекс
-    # У элементов главной диагонали совпадают оба индекса
-    # Не известно, как охарактеризовать элементы побочной диагонали
-    # .
-    def check_col(k):
-        x = []
-        for i in range(len(board)):
-            x.append(board[i][k] == pl)
-        return all(x)
+    # Можно посчитать символы игрока pl в каждой строке, столбце и
+    # диагоналях. Если хоть где-то три символа игрока, то игрок
+    # победил
 
-    def check_row(k):
-        x = []
-        for i in range(len(board)):
-            x.append(board[k][i] == pl)
-        return all(x)
+    # Проверяем количество символов игрока в каждом столбце
+    check_cols = any([
+        [game_board[i][0] for i in range(3)].count(pl) == 3,
+        [game_board[i][1] for i in range(3)].count(pl) == 3,
+        [game_board[i][2] for i in range(3)].count(pl) == 3,
+    ])
 
-    def check_main_diag():
-        x = []
-        for i in range(len(board)):
-            for j in range(len(board)):
-                if i == j:
-                    x.append(board[i][j] == pl)
-        return all(x)
+    # Проверяем количество символов игрока в каждой строке
+    check_rows = any([
+        game_board[0].count(pl) == 3,
+        game_board[1].count(pl) == 3,
+        game_board[2].count(pl) == 3,
+    ])
 
-    def check_other_diag():
-        x = [
-            board[0][2] == pl,
-            board[1][1] == pl,
-            board[2][0] == pl
-        ]
-        return all(x)
+    # Проверяем количество символов игрока на диагонали
+    # слева направо
+    check_main_diag = all([
+        game_board[0][0] == pl,
+        game_board[1][1] == pl,
+        game_board[2][2] == pl,
+    ])
 
-    return any(
-        [
-            any([check_row(i) for i in range(len(board))]),
-            any([check_col(i) for i in range(len(board))]),
-            check_main_diag(),
-            check_other_diag()
-         ]
-    )
+    # Проверяем количество символов игрока на диагонали
+    # справа налево
+    check_other_diag = all([
+        game_board[0][2] == pl,
+        game_board[1][1] == pl,
+        game_board[2][0] == pl,
+    ])
+
+    return any([check_rows, check_cols,
+                check_main_diag, check_other_diag])
 
 
 def game_loop():
