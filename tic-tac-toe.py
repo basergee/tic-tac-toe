@@ -48,6 +48,7 @@ def init_game():
 
 def print_board(board):
     # Напечатать первой строкой ось координат
+    print()
     print("  | 0 | 1 | 2 ")
     print("--+---+---+---")
     for i in range(len(board)):
@@ -56,6 +57,7 @@ def print_board(board):
         if i == len(board) - 1:
             break
         print("--+---+---+---")
+    print()
 
 
 # Просит пользователя ввести координаты клетки, пока не будет ввведено
