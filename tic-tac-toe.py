@@ -144,7 +144,6 @@ def game_loop():
 
         if is_winner(player, game_board):
             # Есть победитель
-            # Вывести сообщение о победителе и выйти
             print_board(game_board)
             print(f" *** Игрок {player} победил! ***")
             print()
@@ -152,7 +151,6 @@ def game_loop():
 
         if not free_cells:
             # Нет свободных клеток
-            # Вывести сообщение о ничьей и выйти
             print_board(game_board)
             print(" *** Ничья! ***")
             print()
