@@ -148,14 +148,16 @@ def game_loop():
             # Есть победитель
             # Вывести сообщение о победителе и выйти
             print_board(game_board)
-            print(f"Игрок {player} победил!")
+            print(f" *** Игрок {player} победил! ***")
+            print()
             break
 
         if not free_cells:
             # Нет свободных клеток
             # Вывести сообщение о ничьей и выйти
             print_board(game_board)
-            print("Ничья!")
+            print(" *** Ничья! ***")
+            print()
             break
 
         # Передать ход другому игроку
